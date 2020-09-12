@@ -4,10 +4,15 @@ import javax.swing.*;
 
 public class WindowHandler {
 
-    MainWindow window = new MainWindow();
+    public static void runFrame(){
 
-    static void runFrame(){
+        SwingUtilities.invokeLater(() -> {
 
-        //SwingUtilities.invokeLater
+            MainWindow window = new MainWindow();
+
+        });
     }
+
+
+
 }

@@ -1,14 +1,11 @@
 package com.pessolutions.diary;
 
+import com.pessolutions.diary.constants.MainWindowConstants;
+
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicMenuBarUI;
 import java.awt.*;
 
 public class MainWindow extends JFrame {
-
-    private JLabel inscription;
-
-    private JMenuBar menuBar;
 
     @Override
     protected void frameInit() {
@@ -17,18 +14,27 @@ public class MainWindow extends JFrame {
 
         setLayout(new BorderLayout());
 
-        setSize(FrameConstant.scrWidth, FrameConstant.scrHeight);
+        setSize(MainWindowConstants.DEFAULT_WIDTH, MainWindowConstants.DEFAULT_HEIGHT);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         setLocationRelativeTo(null);
+
+        setTitle(MainWindowConstants.DEFAULT_NAME);
+
+        add(createDefaultMainMenuBar(), BorderLayout.NORTH);
 
         setVisible(true);
     }
 
-    private JMenuBar  createDefaultMainMenuBar() {
+    private JMenuBar createDefaultMainMenuBar() {
 
-        menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
+
+        JLabel inscription = new JLabel("Main Window");
+
+        menuBar.add(inscription);
+
         return menuBar;
     }
 }
