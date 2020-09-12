@@ -12,7 +12,7 @@ public class MainWindow extends JFrame {
 
         super.frameInit();
 
-        setLayout(new BorderLayout());
+        setLayout(null);
 
         setSize(MainWindowConstants.DEFAULT_WIDTH, MainWindowConstants.DEFAULT_HEIGHT);
 
@@ -22,12 +22,23 @@ public class MainWindow extends JFrame {
 
         setTitle(MainWindowConstants.DEFAULT_NAME);
 
-        add(createDefaultMainMenuBar(), BorderLayout.NORTH);
+        add (createDefaultLabel());
 
         setVisible(true);
+
     }
 
-    private JMenuBar createDefaultMainMenuBar() {
+
+    private JLabel createDefaultLabel(){
+
+        JLabel menuLabel = new JLabel("Main Window");
+
+        menuLabel.setBounds(MainWindowConstants.DEFAULT_LABEL_X, MainWindowConstants.DEFAULT_LABEL_Y, MainWindowConstants.DEFAULT_LABEL_WIDTH, MainWindowConstants.DEFAULT_LABEL_HEIGHT);
+
+        return  menuLabel;
+    }
+
+    /*private JMenuBar createDefaultMainMenuBar() {
 
         JMenuBar menuBar = new JMenuBar();
 
@@ -37,4 +48,19 @@ public class MainWindow extends JFrame {
 
         return menuBar;
     }
+
+    private JTextArea createDefaultTextArea(){
+
+        JTextArea menuTextArea = new JTextArea();
+
+        menuTextArea.setLayout(new BorderLayout());
+
+        menuTextArea.setSize(MainWindowConstants.DEFAULT_TEXT_AREA_WIDTH, MainWindowConstants.DEFAULT_TEXT_AREA_HEIGHT);
+
+        menuTextArea.setFont(new Font("Arial", Font.BOLD, 18));
+
+        menuTextArea.setLineWrap(true);
+
+        return menuTextArea;
+    }*/
 }
