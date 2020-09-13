@@ -1,8 +1,10 @@
 package com.pessolutions.diary;
 
 import com.pessolutions.diary.constants.MainWindowConstants;
+import com.pessolutions.diary.constants.MenuBarConstants;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 public class MainWindow extends JFrame {
@@ -12,9 +14,9 @@ public class MainWindow extends JFrame {
 
         super.frameInit();
 
-        setLayout(null);
+        setLayout(new BorderLayout());
 
-        setSize(MainWindowConstants.DEFAULT_WIDTH, MainWindowConstants.DEFAULT_HEIGHT);
+        setSize(Toolkit.getDefaultToolkit().getScreenSize().width/3, Toolkit.getDefaultToolkit().getScreenSize().height/2);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -22,23 +24,65 @@ public class MainWindow extends JFrame {
 
         setTitle(MainWindowConstants.DEFAULT_NAME);
 
-        setResizable(false);
+        add(getDefaultScrollPane(getDefaultTextArea()), BorderLayout.CENTER);
 
-        add(creationOfDefaultJLabel());
+        add(getDefaultMainMenuBar(getDefaultFileMenu(), getDefaultEditMenu(), getDefaultTaskMenu()), BorderLayout.NORTH);
 
         setVisible(true);
 
     }
 
-    private JLabel creationOfDefaultJLabel (){
+    private JTextArea getDefaultTextArea(){
 
-        JLabel menuLabel  = new JLabel("Main Menu");
+        JTextArea menuTextArea = new JTextArea();
 
-        menuLabel.setLayout(null);
+        menuTextArea.setLayout(null);
 
-        menuLabel.setBounds(550,500,100,100);
+        menuTextArea.setFont(new Font("Arial", Font.BOLD, 18));
 
-        return menuLabel;
+        menuTextArea.setLineWrap(true);
+
+        return menuTextArea;
+    }
+
+    private JScrollPane getDefaultScrollPane(JTextArea textArea){
+
+        return new JScrollPane(textArea);
+    }
+
+    private JMenuBar getDefaultMainMenuBar(JMenu fileMenu, JMenu taskMenu, JMenu editMenu) {
+
+        JMenuBar menuBar = new JMenuBar();
+
+        menuBar.add(fileMenu);
+
+        menuBar.add(taskMenu);
+
+        menuBar.add(editMenu);
+
+        return menuBar;
+    }
+
+    private JMenu getDefaultFileMenu(){
+
+        JMenu file = new JMenu(MenuBarConstants.FILE_MENU_NAME);
+
+        return file;
+    }
+
+    private JMenu getDefaultEditMenu(){
+
+        JMenu edit = new JMenu(MenuBarConstants.EDIT_MENU_NAME);
+
+        return edit;
+
+    }
+
+    private JMenu getDefaultTaskMenu(){
+
+        JMenu task = new JMenu(MenuBarConstants.TASK_MENU_NAME);
+
+        return task;
     }
 
 }
