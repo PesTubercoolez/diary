@@ -2,17 +2,11 @@ package com.pessolutions.diary;
 
 import javax.swing.*;
 
-public class WindowHandler {
+public class WindowHandler extends MainWindow{
 
-    public static void runFrame(){
 
-        SwingUtilities.invokeLater(() -> {
+    public void runFrame(){
 
-            MainWindow window = new MainWindow();
-
-        });
+        SwingUtilities.invokeLater(WindowHandler.super::frameInit);
     }
-
-
-
 }

@@ -3,7 +3,7 @@ package com.pessolutions.diary;
 import com.pessolutions.diary.constants.MainWindowConstants;
 
 import javax.swing.*;
-import java.awt.*;
+
 
 public class MainWindow extends JFrame {
 
@@ -22,45 +22,23 @@ public class MainWindow extends JFrame {
 
         setTitle(MainWindowConstants.DEFAULT_NAME);
 
-        add (createDefaultLabel());
+        setResizable(false);
+
+        add(creationOfDefaultJLabel());
 
         setVisible(true);
 
     }
 
+    private JLabel creationOfDefaultJLabel (){
 
-    private JLabel createDefaultLabel(){
+        JLabel menuLabel  = new JLabel("Main Menu");
 
-        JLabel menuLabel = new JLabel("Main Window");
+        menuLabel.setLayout(null);
 
-        menuLabel.setBounds(MainWindowConstants.DEFAULT_LABEL_X, MainWindowConstants.DEFAULT_LABEL_Y, MainWindowConstants.DEFAULT_LABEL_WIDTH, MainWindowConstants.DEFAULT_LABEL_HEIGHT);
+        menuLabel.setBounds(550,500,100,100);
 
-        return  menuLabel;
+        return menuLabel;
     }
 
-    /*private JMenuBar createDefaultMainMenuBar() {
-
-        JMenuBar menuBar = new JMenuBar();
-
-        JLabel inscription = new JLabel("Main Window");
-
-        menuBar.add(inscription);
-
-        return menuBar;
-    }
-
-    private JTextArea createDefaultTextArea(){
-
-        JTextArea menuTextArea = new JTextArea();
-
-        menuTextArea.setLayout(new BorderLayout());
-
-        menuTextArea.setSize(MainWindowConstants.DEFAULT_TEXT_AREA_WIDTH, MainWindowConstants.DEFAULT_TEXT_AREA_HEIGHT);
-
-        menuTextArea.setFont(new Font("Arial", Font.BOLD, 18));
-
-        menuTextArea.setLineWrap(true);
-
-        return menuTextArea;
-    }*/
 }
