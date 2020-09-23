@@ -3,12 +3,29 @@ package com.pessolutions.diary;
 import com.pessolutions.diary.constants.MainWindowConstants;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class MainWindow extends JFrame {
 
+MainWindowJItem myItem;
+WindowTextArea textArea;
+MainWindowJMenu windowMenu;
+
     @Override
     protected void frameInit() {
+
+        myItem = new MainWindowJItem("Open File");
+
+        /*myItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                myItem.openFile(textArea);
+            }
+        });*/
 
         super.frameInit();
 
@@ -22,9 +39,9 @@ public class MainWindow extends JFrame {
 
         setTitle(MainWindowConstants.DEFAULT_NAME);
 
-        add(new JScrollPane(new WindowTextArea()), BorderLayout.CENTER);
+        add(new JScrollPane(textArea = new WindowTextArea()), BorderLayout.CENTER);
 
-        add(new JMenuBar().add(new JMenu()), BorderLayout.NORTH);
+        add(new JMenuBar().add(windowMenu = new MainWindowJMenu("File", myItem)), BorderLayout.NORTH);
 
         setVisible(true);
     }

@@ -25,15 +25,6 @@ public class MainWindowJItemsAction implements ActionSetter {
                 });
 
                 break;
-
-            case 2:
-                menuItem.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                    }
-                });
-                break;
         }
 
 
