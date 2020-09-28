@@ -1,11 +1,11 @@
-package com.pessolutions.diary;
+package com.ui.textarea;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class WindowTextArea extends JTextArea {
 
-    WindowTextArea(){
+    public WindowTextArea(){
 
         setLayout(null);
 

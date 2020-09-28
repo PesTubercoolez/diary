@@ -1,37 +1,61 @@
 package com.pessolutions.diary;
 
-import com.pessolutions.diary.constants.MainWindowConstants;
+import com.ui.menu.MainWindowJMenu;
+
+import com.ui.menuitem.MainWindowJItem;
+import com.ui.textarea.WindowTextArea;
+import com.pessolutions.diary.constants.*;
+
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 
 public class MainWindow extends JFrame {
 
-MainWindowJItem myItem;
-WindowTextArea textArea;
-MainWindowJMenu windowMenu;
+private MainWindowJItem openItem;
+private MainWindowJItem saveAsItem;
+private WindowTextArea textArea;
+private MainWindowJMenu windowMenu;
+private MainWindowJMenuBar windowMenuBar;
+private MainWindowJItem exitItem;
+private MainWindowJItem saveItem;
+private MainWindowJItem newItem;
 
     @Override
     protected void frameInit() {
 
-        myItem = new MainWindowJItem("Open File");
+        textArea = new WindowTextArea();
 
-        /*myItem.addActionListener(new ActionListener() {
+        openItem = new MainWindowJItem("Open File");
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        saveAsItem = new MainWindowJItem("Save As");
 
-                myItem.openFile(textArea);
-            }
-        });*/
+        exitItem = new MainWindowJItem("Exit");
+
+        saveItem = new MainWindowJItem("Save");
+
+        newItem = new MainWindowJItem("New");
+
+
+        openItem.addActionListener(MainWindowAction.setOpenAction(textArea));
+
+        saveAsItem.addActionListener(MainWindowAction.setSaveAsAction(textArea));
+
+        saveItem.addActionListener(MainWindowAction.setSaveAction(textArea));
+
+        exitItem.addActionListener(MainWindowAction.setExitAction(textArea));
+
+        newItem.addActionListener(MainWindowAction.newFileAction(textArea));
 
         super.frameInit();
 
         setLayout(new BorderLayout());
 
-        setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 3, Toolkit.getDefaultToolkit().getScreenSize().height / 2);
+        setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 3,
+
+                Toolkit.getDefaultToolkit().getScreenSize().height / 2);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,9 +63,9 @@ MainWindowJMenu windowMenu;
 
         setTitle(MainWindowConstants.DEFAULT_NAME);
 
-        add(new JScrollPane(textArea = new WindowTextArea()), BorderLayout.CENTER);
+        add(new JScrollPane(textArea), BorderLayout.CENTER);
 
-        add(new JMenuBar().add(windowMenu = new MainWindowJMenu("File", myItem)), BorderLayout.NORTH);
+        add(windowMenuBar = new MainWindowJMenuBar(windowMenu =  new MainWindowJMenu(MenuBarConstants.FILE_MENU_NAME,newItem,openItem, saveItem, saveAsItem, exitItem)), BorderLayout.NORTH);
 
         setVisible(true);
     }
